@@ -1,16 +1,23 @@
 import { StatusBar } from 'expo-status-bar'
 import { Text, View } from 'react-native'
-import { TailwindProvider } from 'tailwindcss-react-native'
-
+import { useFonts } from 'expo-font'
+import  AppLoading  from 'expo-app-loading'
 import React from 'react'
+import Welcome from './src/screens/Welcome'
 
+import RootStack from './src/navigators/RootStack'
 export default function App() {
-  return (
-    <TailwindProvider>
-      <View className="flex-1 items-center justify-center bg-red-300">
-        <Text className="text-white">Open up App.tsx to start working on your app!</Text>
-        <StatusBar style="auto" />
-      </View>
-    </TailwindProvider>
-  )
+  let [fontsLoaded] = useFonts({
+    'Lato-Bold': require('./src/assets/fonts/Lato-Bold.ttf'),
+    'Lato-Regular': require('./src/assets/fonts/Lato-Regular.ttf'),
+  })
+  if (!fontsLoaded) {
+
+    return(
+
+      <AppLoading />
+    ) 
+  }
+
+  return <RootStack />
 }
