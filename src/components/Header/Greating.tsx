@@ -35,22 +35,16 @@ const Greating: FunctionComponent<GreetingProps> = (props) => {
       >
         {props.mainText}
       </RegularText>
-        <SmallText
-             textStyles={[
-                {
-                  color: colors.secondary,
-      
-                },
-                props.subTextStyles,
-              ]}
-        >
-
-
-{props.subText}
-        </SmallText>
-
-
-
+      <SmallText
+        textStyles={[
+          {
+            color: colors.secondary,
+          },
+          props.subTextStyles,
+        ]}
+      >
+        {props.subText}
+      </SmallText>
     </StyledView>
   )
 }
