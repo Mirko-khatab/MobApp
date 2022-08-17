@@ -1,29 +1,59 @@
 import React, { FunctionComponent } from 'react'
-
-type RootStackParamList = {
-    Welcome: undefined
-}
-
-const Stack = createStackNavigator()
-
-//React Navigation
 import { NavigationContainer } from '@react-navigation/native'
-import {createStackNavigator} from '@react-navigation/stack'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Welcome from '../screens/Welcome'
+import Home from '../screens/Home'
+import { colors } from '../components/color'
+import Greating from '../components/Header/Greating'
+import Profile from '../components/Header/Profile'
+
+import Avi from '../assets/avi/avatar.png'
+const Stack = createNativeStackNavigator()
 
 const RootStack: FunctionComponent = () => {
-return(
+  return (
     <NavigationContainer>
-        <Stack.Navigator>
-<Stack.Screen
- name="Welcome"
-  component={Welcome} 
-  options={{headerShown: false}}
-  />
-        </Stack.Navigator>
-</NavigationContainer>
-    
-)
-
+      <Stack.Navigator
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: colors.graylight,
+            boarderBottomWidth: 0,
+            shadowColor: 'transparent',
+            elevation: 0,
+            shadowOpacity: 0,
+            height: 120,
+          },
+          headerTintColor: colors.secondary,
+          headerRight: () => (
+            <Profile
+              img={Avi}
+              imgContainerStyles={{ backgroundColor: colors.tertiary }}
+            />
+          ),
+        }}
+        initialRouteName="Home"
+      >
+        <Stack.Screen
+          name="Welcome"
+          component={Welcome}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{
+            headerTitle: (props) => (
+              <Greating
+                mainText="Hey Mirko!"
+                subText="Welcome to your new account"
+                {...props}
+              />
+            ),
+            headerLeft: () => <></>,
+          }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
 }
 export default RootStack
