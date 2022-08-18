@@ -5,6 +5,7 @@ import background from '../assets/bgs/background_v1.png'
 import BigText from '../components/Texts/BigText'
 import SmallText from '../components/Texts/SmallText'
 import RegularButton from '../components/Buttons/RegularButton'
+import { useNavigation } from '@react-navigation/native'
 //custom components
 import { colors } from '../components/color'
 import { Container } from '../components/shared'
@@ -34,6 +35,8 @@ const BottomSection = styled.View`
 `
 
 const Welcome: FunctionComponent = () => {
+  const navigation = useNavigation<any>()
+
   return (
     <>
       <StatusBar style="light" />
@@ -48,7 +51,11 @@ const Welcome: FunctionComponent = () => {
           <SmallText textStyles={{ width: '75%', marginBottom: 25 }}>
             Best payment method,connects your money to your friends,
           </SmallText>
-          <RegularButton onPress={() => {}}>
+          <RegularButton
+            onPress={() => {
+              navigation.navigate('Home')
+            }}
+          >
             Get Started
           </RegularButton>
         </BottomSection>
