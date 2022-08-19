@@ -6,6 +6,11 @@ import BigText from '../components/Texts/BigText'
 import SmallText from '../components/Texts/SmallText'
 import RegularButton from '../components/Buttons/RegularButton'
 import { useNavigation } from '@react-navigation/native'
+
+import { RootStackParamList } from '../navigators/RootStack'
+import { StackScreenProps } from '@react-navigation/stack'
+type Props =StackScreenProps<RootStackParamList,"Welcome">
+
 //custom components
 import { colors } from '../components/color'
 import { Container } from '../components/shared'
@@ -34,8 +39,9 @@ const BottomSection = styled.View`
   justify-content: flex-end;
 `
 
-const Welcome: FunctionComponent = () => {
-  const navigation = useNavigation<any>()
+const Welcome: FunctionComponent<Props> = ({navigation}) => {
+
+
 
   return (
     <>

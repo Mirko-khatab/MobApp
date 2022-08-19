@@ -42,8 +42,16 @@ const Logo = styled.Image`
   flex: 1;
 `
 
+import { useNavigation } from '@react-navigation/native'
+import {Props as HomeProps} from '../../screens/Home'
+
 const CardItem: FunctionComponent<CardProps> = (props) => {
-  const handlePress = () => {}
+  const navigation = useNavigation<HomeProps["navigation"]>()
+
+  const handlePress = () => {
+    navigation.navigate("Balance",{...props})
+  }
+  
   return (
     <CardBackground source={card_bg}>
       <CardTouchable underlayColor={colors.secondary} onPress={handlePress}>
