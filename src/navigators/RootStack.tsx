@@ -6,9 +6,19 @@ import Home from '../screens/Home'
 import { colors } from '../components/color'
 import Greating from '../components/Header/Greating'
 import Profile from '../components/Header/Profile'
-
+import Balance from '../screens/Balance'
 import Avi from '../assets/avi/avatar.png'
-const Stack = createNativeStackNavigator()
+import { CardProps } from '../components/Cards/types'
+
+import { Ionicons } from '@expo/vector-icons'
+
+export type RootStackParamList = {
+  Welcome: undefined
+  Home: undefined
+  Balance: CardProps
+}
+
+const Stack = createNativeStackNavigator<RootStackParamList>()
 
 const RootStack: FunctionComponent = () => {
   return (
@@ -31,7 +41,7 @@ const RootStack: FunctionComponent = () => {
             />
           ),
         }}
-        initialRouteName="Home"
+        initialRouteName="Balance"
       >
         <Stack.Screen
           name="Welcome"
@@ -51,6 +61,25 @@ const RootStack: FunctionComponent = () => {
             ),
             headerLeft: () => <></>,
           }}
+        />
+        <Stack.Screen
+          name="Balance"
+          component={Balance}
+          options={({ route }) => ({
+            headerTitle: route?.params?.alias,
+            headerTitleAlign: 'center',
+            headerBackImage: (props) => (
+              <Ionicons
+                {...props}
+                name="chevron-back"
+                size={25}
+                color={colors.secondary}
+              />
+            ),
+            headerLeftContainerStyle: {
+              paddingLeft: 10,
+            },
+          })}
         />
       </Stack.Navigator>
     </NavigationContainer>
