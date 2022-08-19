@@ -9,7 +9,7 @@ const StyledView = styled.View`
   height: 45px;
   width: 45px;
   boarder-radius: 10px;
-  jusify-content: center;
+  justify-content: center;
   align-items: center;
 `
 import { TransactionAviProps } from './types'
